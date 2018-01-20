@@ -12,26 +12,27 @@
 							</f7-list-item>
 						</f7-list>
 						<f7-list>
-							<f7-list-button title="Sign In" close-login-screen></f7-list-button>
-							<f7-list-label>
-								<p>Click Sign In to close Login Screen</p>
-							</f7-list-label>
+							<f7-button @click="login">Sign In</f7-button>
+					
 						</f7-list>
                         </f7-block>
                         
 </template>
 
 <script>
+import {loginServices} from '../services/auth'
 export default {
-    
-goRegister(){
-				
-				console.log(this);
-				console.log(this.$router);
-				//console.log(this.$f7Router.$route)
-				//debugger;
-				// this.$route.router.go('/register');
-			}
+
+	methods:{
+		login(){
+
+			console.log("ok");
+			// this.$https.post('https://localhost:44334/api/AccountApi/login',{"Email":"test2@mail.it", "Password":"password", "RememberMe":false })
+			// .then(function(resp) { console.log(rest)},function(error){console.log(error)});
+		    loginServices("user", "pass");
+		}
+	}
+   
 }
     
 </script>
