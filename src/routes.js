@@ -26,6 +26,22 @@ export default [
     component: require('./assets/vue/pages/home.vue'),
     meta: {auth:false}
   },
+  {
+    path: '/userProfile/',
+     name:"userProfile",
+    component: require('./assets/vue/pages/userProfile.vue'),
+  },
+  {
+    path: '/autoInfo/',
+     name:"autoInfo",
+    component: require('./assets/vue/pages/autoInfo.vue'),
+  },
+
+  {
+    path: '/error/',
+     name:"error",
+    component: require('./assets/vue/pages/error.vue'),
+  },
   
   
   {

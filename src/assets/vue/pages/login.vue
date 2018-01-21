@@ -27,34 +27,59 @@
 
 <script>
 import {loginServices} from '../services/auth'
-//import router from '@/router'
-  //  import store from '../../../main'
+import {GetCurrentUserDataServ} from '../services/userServices'
+
 export default {
 
-	data: {
-	   'password':null,
-	   'username':null  
+	data: function() { return {
+	   password:'',
+	   username:''  
+	}
 	},
 
 	methods:{
 		login(){
-
-			console.log("ok");
-			// this.$https.post('https://localhost:44334/api/AccountApi/login',{"Email":"test2@mail.it", "Password":"password", "RememberMe":false })
-			// .then(function(resp) { console.log(rest)},function(error){console.log(error)});
-			loginServices(this.username, this.password)
+			//loginServices(this.username, this.password)
+			loginServices("test2@mail.it", "password")
 			.then(response =>{
+				 console.log("response token");
+				 console.log("token " + response.data)
 					localStorage.setItem('token', response.data);
-					this.$store.commit('LOGIN_USER');
-					console.log(response.data);
-				
-					this.$f7.mainView.router.load({url: "/home"})					
+					GetCurrentUserDataServ()
+				.then(res=> {
+					var user = res.data;
+					console.log("response user ");
+					console.log(user);
+					// user info 
+					if(user.DisplayName == null) {
+						this.$store.commit('USER_INFO_INCOMPLETE');	
+						console.log("store display name ")
+						console.log(this.$store.state.userInfoComplete);
+					}else {
+						this.$store.commit('USER_INFO_COMPLETE');
+					}
+
+					// auto infor
+					if(user.auto == null) {
+						this.$store.commit('AUTO_INFO_INCOMPLETE');	
+					}else {
+						this.$store.commit('AUTO_INFO_COMPLETE');
+					}
+
+						localStorage.setItem('user', JSON.stringify(res.data));
+				    this.$store.commit('LOGIN_USER');	
+					this.$f7.mainView.router.load({url: "/home"})	
+							
+
+						})
+				.catch(function (error) {
+					console.log(error)
+				});	
+									
 				})
 				.catch(function (error) {
 					console.log(error)
 				});
-			
-				
 		}
 	}
    

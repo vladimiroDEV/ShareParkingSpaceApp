@@ -1,8 +1,7 @@
 import axios from 'axios';
-import { error } from 'util';
-import state from '../../../main'
+import {BASE_URL} from '../utils/config'
 
-const BASE_URL = 'https://localhost:44334/api';
+
 //axios.defaults.headers.common['Authorization'] = store.getState().auth.user.token;
 axios.defaults.headers.common['Content-Type'] =  'application/json';
 
@@ -12,7 +11,6 @@ export {loginServices, getPrivateStartupBattles};
 
 
   function loginServices(email, password) {
-   console.log("------------");
   const url = `${BASE_URL}/AccountApi/login`;
 
   return axios.post(url,{

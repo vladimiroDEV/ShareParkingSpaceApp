@@ -41,6 +41,7 @@ Vue.use(Router)
 new Vue({
   el: '#app',
   template: '<app/>',
+  
   // Init Framework7 by passing parameters here
   framework7: {
     root: '#app',
