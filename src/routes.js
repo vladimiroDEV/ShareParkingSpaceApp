@@ -32,6 +32,11 @@ export default [
     component: require('./assets/vue/pages/userProfile.vue'),
   },
   {
+    path: '/credits/',
+     name:"credits",
+    component: require('./assets/vue/pages/credit.vue'),
+  },
+  {
     path: '/autoInfo/',
      name:"autoInfo",
     component: require('./assets/vue/pages/autoInfo.vue'),

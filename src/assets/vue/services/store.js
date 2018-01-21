@@ -52,7 +52,7 @@ const state = {
         state.currentUser.auto.color= auto.carColor;
     },
      UPDATE_USER_CREDIT(state, credit){
-         state.currentUser.currentUser= credit;
+         state.currentUser.Credit= credit;
      }
 
      

@@ -5,7 +5,7 @@ axios.defaults.headers.common['Content-Type'] =  'application/json';
 axios.defaults.headers.common['Authorization'] =AuthStr;
 
 
-export {GetCurrentUserDataServ, updateUser,updateUserAuto} ; 
+export {GetCurrentUserDataServ, updateUser,updateUserAuto, refillCredit} ; 
 
 function GetCurrentUserDataServ(){
     const url = `${BASE_URL}/ManageAccount/GetUserInfo`;
@@ -30,6 +30,14 @@ function updateUserAuto(plate, brend, model,color){
       "CarModel":model, 
       "CarColor":color,
       "NumberPlate":plate
+    });
+}
+
+function refillCredit(newCredit){
+    const url = `${BASE_URL}/ManageAccount/UpdateUserCredit`; 
+    return axios.post(url,{
+      "Credit":newCredit, 
+      "Action":1 /// 1= ricarica 
     });
 }
 

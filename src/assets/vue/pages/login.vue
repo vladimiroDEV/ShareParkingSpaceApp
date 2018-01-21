@@ -66,7 +66,8 @@ export default {
 						this.$store.commit('UPDATE_USER_AUTO', user.auto)
 					}
 
-					this.$store.commit('UPDATE_USER_PROFILE',res.data)
+					this.$store.commit('UPDATE_USER_PROFILE',user)
+					this.$store.commit('UPDATE_USER_CREDIT',user.credits);
 				    this.$store.commit('LOGIN_USER');	
 					this.$f7.mainView.router.load({url: "/home"})	
 							
