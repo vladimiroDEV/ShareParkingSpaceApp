@@ -16,15 +16,12 @@
 				</f7-card>
 
 					<f7-block>
-							<f7-grid>
-								<f7-col width="50">
+							
 									<f7-button v-on:click="goLogin">Login</f7-button>
 									<br/>
 									 
-									 <f7-button  href="/register/">Register</f7-button>
-									<f7-button  v-on:click="goRegister">Register</f7-button>
-								</f7-col>
-							</f7-grid>
+									 <f7-button  href="/register/">Registrati</f7-button>
+									
 						</f7-block>
 						
 					

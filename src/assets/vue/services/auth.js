@@ -5,7 +5,7 @@ import {BASE_URL} from '../utils/config'
 //axios.defaults.headers.common['Authorization'] = store.getState().auth.user.token;
 axios.defaults.headers.common['Content-Type'] =  'application/json';
 
-export {loginServices, getPrivateStartupBattles};
+export {loginServices, getPrivateStartupBattles, registreUserServ};
 
 
 
@@ -20,7 +20,15 @@ export {loginServices, getPrivateStartupBattles};
   });
 }
 
-
+function registreUserServ(email, password ,confirmPassword){
+  const url = `${BASE_URL}/AccountApi/register`;
+  
+  return axios.post(url,{
+    "Email":email, 
+    "Password":password, 
+    "ConfirmPassword":confirmPassword 
+  });
+}
 
 function logout(){
   localStorage.removeItem('token');

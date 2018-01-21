@@ -11,3 +11,4 @@ function GetCurrentUserDataServ(){
     const url = `${BASE_URL}/ManageAccount/GetUserInfo`;
     return axios.get(url);
 }
+
