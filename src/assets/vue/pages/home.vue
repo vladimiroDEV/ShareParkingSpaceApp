@@ -6,14 +6,13 @@
                 <f7-link icon="icon-bars" open-panel="right"></f7-link>
               </f7-nav-right>
             </f7-navbar>
-		<f7-navbar title="About" back-link="Back" sliding></f7-navbar>
 
 		<f7-block inner>
-			<p> Per poter utilizare il servizio  completa il tuo profilo</p>
-			<p> Per poter utilizare il servizio inserisci i dati relativi alla tua auto</p>
+			<p> Per poter utilizare il servizio  completa il tuo profilo <f7-link href="/userProfile/">Profilo</f7-link></p>
+			<p> Per poter utilizare il servizio inserisci i dati relativi alla tua auto <f7-link href="/autoInfo/">Auto</f7-link></p>
 		</f7-block>
 
-	 <f7-panel right reveal>
+	 <f7-panel right cover>
             <f7-block>
               <p>Menu</p>
             </f7-block>

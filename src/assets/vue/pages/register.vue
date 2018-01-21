@@ -1,6 +1,6 @@
 <template>
 	<f7-page>
-		<f7-navbar title="Registrazione"></f7-navbar>
+		<f7-navbar title="Registrazione" back-link="Back"></f7-navbar>
 		<div  v-if="!registerSuccess">
 		<f7-list form>
 			<f7-list-item>

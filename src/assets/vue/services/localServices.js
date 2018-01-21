@@ -5,3 +5,4 @@ export {getLocalUser}
       return  JSON.parse(localStorage.getItem('user'));
     }else return null;
 }
+

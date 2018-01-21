@@ -3,7 +3,7 @@
 
 	<f7-pages>
 		<f7-page>
-			<f7-login-screen-title>Login</f7-login-screen-title>
+			<f7-navbar title="Login" back-link="Back"></f7-navbar>
 			<f7-list form>
 				<f7-list-item>
 					<f7-label>Username</f7-label>
@@ -53,20 +53,20 @@ export default {
 					// user info 
 					if(user.DisplayName == null) {
 						this.$store.commit('USER_INFO_INCOMPLETE');	
-						console.log("store display name ")
-						console.log(this.$store.state.userInfoComplete);
 					}else {
 						this.$store.commit('USER_INFO_COMPLETE');
 					}
 
-					// auto infor
+					// auto info
 					if(user.auto == null) {
 						this.$store.commit('AUTO_INFO_INCOMPLETE');	
 					}else {
 						this.$store.commit('AUTO_INFO_COMPLETE');
+						console.log(user.auto);
+						this.$store.commit('UPDATE_USER_AUTO', user.auto)
 					}
 
-						localStorage.setItem('user', JSON.stringify(res.data));
+					this.$store.commit('UPDATE_USER_PROFILE',res.data)
 				    this.$store.commit('LOGIN_USER');	
 					this.$f7.mainView.router.load({url: "/home"})	
 							
