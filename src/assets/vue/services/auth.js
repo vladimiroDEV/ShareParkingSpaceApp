@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { error } from 'util';
+import state from '../../../main'
 
 const BASE_URL = 'https://localhost:44334/api';
 //axios.defaults.headers.common['Authorization'] = store.getState().auth.user.token;
@@ -9,24 +10,26 @@ export {loginServices, getPrivateStartupBattles};
 
 
 
+
   function loginServices(email, password) {
    console.log("------------");
   const url = `${BASE_URL}/AccountApi/login`;
 
   return axios.post(url,{
-    "Email":"test2@mail.it", 
-    "Password":"password", 
+    "Email":email, 
+    "Password":password, 
     "RememberMe":false 
-  }).then(response =>console.log(response.data) )
-  .catch(function (error) {
-    console.log(error)
-  });;
+  });
 }
 
 
 
 function logout(){
-
+  localStorage.removeItem('token');
+}
+export class User {
+  
+ 
 }
 
 function getPublicStartupBattles() {

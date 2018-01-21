@@ -27,6 +27,10 @@ import Router from 'vue-router'
 
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+
+import {store} from './assets/vue/services/store'
+
+
 Vue.use(VueAxios, axios);
 
 // Init F7 Vue Plugin
@@ -47,5 +51,7 @@ new Vue({
   // Register App Component
   components: {
     app: App
-  }
+  },
+  // store 
+  store: store
 })

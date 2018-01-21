@@ -18,7 +18,7 @@
 					<f7-block>
 							<f7-grid>
 								<f7-col width="50">
-									<f7-button open-login-screen="#login-screen">Login</f7-button>
+									<f7-button v-on:click="goLogin">Login</f7-button>
 									<br/>
 									 
 									 <f7-button  href="/register/">Register</f7-button>
@@ -32,33 +32,21 @@
 					</f7-page>
 				</f7-pages>
 			</f7-view>
-		</f7-views>
-				
-		<!-- Login Screen -->
-		<f7-login-screen id="login-screen">
-			<f7-view>
-				<f7-pages>
-					<f7-page login-screen>
-						<app-login></app-login>
-					</f7-page>
-				</f7-pages>
-			</f7-view>
-		</f7-login-screen>
-	
+		</f7-views>	
 	</div>
 </template>
 
 <script>
-import Login from './assets/vue/components/login.vue'
+
 	export default {
-		
-        components:{
-			'app-login': Login
-		}	,	
+			
 		methods:{
 			
 			goRegister(){
 				this.$f7.mainView.router.load({url: "/register"})
+			},
+			goLogin(){
+				this.$f7.mainView.router.load({url: "/login"})
 			}
 		
 		}
