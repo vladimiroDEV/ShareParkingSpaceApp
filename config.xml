@@ -26,5 +26,11 @@
         <allow-intent href="itms-apps:*" />
     </platform>
     <allow-navigation href="*" />
+    <plugin name="cordova-plugin-googlemaps" spec="^2.1.1">
+        <variable name="API_KEY_FOR_ANDROID" value="AIzaSyALTZTZ3SV0t5xehju3h0ia4DvDXzgCcB4" />
+        <variable name="API_KEY_FOR_IOS" value="AIzaSyCkrMpMOJ_A0ooOQkmaKcCveZLvCQAlySk" />
+    </plugin>
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
     <engine name="browser" spec="^5.0.3" />
+    <engine name="android" spec="^7.0.0" />
 </widget>

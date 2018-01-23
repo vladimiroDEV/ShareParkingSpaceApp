@@ -1,0 +1,22 @@
+{
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-geolocation": {
+      "PACKAGE_NAME": "com.example.template"
+    },
+    "cordova-plugin-googlemaps": {
+      "API_KEY_FOR_ANDROID": "AIzaSyALTZTZ3SV0t5xehju3h0ia4DvDXzgCcB4",
+      "PACKAGE_NAME": "com.example.template"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.example.template"
+    }
+  },
+  "dependent_plugins": {}
+}
