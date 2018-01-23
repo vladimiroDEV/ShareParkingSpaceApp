@@ -34,10 +34,7 @@
 	export default {
 	
             beforeMount(){
-
-				console.log("crreater")
             if (!this.$store.state.isLogged) {
-				  //this.$router.push('/login')
 				 this.$f7.mainView.router.load({url: "/login"})
 				
 				}
@@ -46,10 +43,7 @@
 				this.$f7.mainView.router.load({url: "/autoInfo"})
 			}catch(erro){
             console.log(erro);
-			}
-				 
-				  return;
-				 
+			}	 
 			}
 			else if(!this.$store.state.autoInfoComplete) {
 				this.$f7.mainView.router.load({url: "/autoInfo"})

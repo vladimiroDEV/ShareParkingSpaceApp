@@ -31711,39 +31711,51 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 	/* harmony default export */ __webpack_exports__["default"] = ({
 
 		data(){return{
-               
+               showPreloader:false
 		}},
 
 		created() {
-			  document.addEventListener("deviceready", onDeviceReady, false);
-    		function onDeviceReady() {
-       			var onSuccess = function(position) {
-        alert('Latitude: '          + position.coords.latitude          + '\n' +
-              'Longitude: '         + position.coords.longitude         + '\n' +
-              'Altitude: '          + position.coords.altitude          + '\n' +
-              'Accuracy: '          + position.coords.accuracy          + '\n' +
-              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-              'Heading: '           + position.coords.heading           + '\n' +
-              'Speed: '             + position.coords.speed             + '\n' +
-              'Timestamp: '         + position.timestamp                + '\n');
-    };
+			debugger;
+			var map;
+			var div = document.getElementById("map_canvas");
+			 map = plugin.google.maps.Map.getMap(div);
+
+
+
+
+
+	// 		  document.addEventListener("deviceready", onDeviceReady, false);
+    // 		function onDeviceReady() {
+    //    			var onSuccess = function(position) {
+    //     alert('Latitude: '          + position.coords.latitude          + '\n' +
+    //           'Longitude: '         + position.coords.longitude         + '\n' +
+    //           'Altitude: '          + position.coords.altitude          + '\n' +
+    //           'Accuracy: '          + position.coords.accuracy          + '\n' +
+    //           'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+    //           'Heading: '           + position.coords.heading           + '\n' +
+    //           'Speed: '             + position.coords.speed             + '\n' +
+    //           'Timestamp: '         + position.timestamp                + '\n');
+    // };
 
     // onError Callback receives a PositionError object
     //
-    function onError(error) {
-        alert('code: '    + error.code    + '\n' +
-              'message: ' + error.message + '\n');
-    }
+    // function onError(error) {
+    //     alert('code: '    + error.code    + '\n' +
+    //           'message: ' + error.message + '\n');
+    // }
 
-    navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    }
+  //  navigator.geolocation.getCurrentPosition(onSuccess, onError);
+    //}
 		},
-			
 		methods:{
 			
 			goRegister(){
@@ -31751,7 +31763,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			goLogin(){
 				this.$f7.mainView.router.load({url: "/login"})
+			},
+			getPosition(){
+				this.showPreloader = true;
+				
+				 navigator.geolocation.getCurrentPosition(
+					 	(position)=>{
+							 this.showPreloader = false;
+							  alert('Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Altitude: '          + position.coords.altitude          + '\n' +
+              'Accuracy: '          + position.coords.accuracy          + '\n' +
+              'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
+              'Heading: '           + position.coords.heading           + '\n' +
+              'Speed: '             + position.coords.speed             + '\n' +
+			  'Timestamp: '         + position.timestamp                + '\n');
+			  
+						 },
+				(error)=>{
+					this.showPreloader = false;
+					  alert('code: '    + error.code    + '\n' +
+                   'message: ' + error.message + '\n');
+				});
 			}
+
+			
 		
 		}
 	});
@@ -31791,7 +31827,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "/register/"
     }
-  }, [_vm._v("Registrati")])], 1)], 1)], 1)], 1)], 1)], 1)
+  }, [_vm._v("Registrati")]), _vm._v(" "), _c('f7-button', {
+    on: {
+      "click": _vm.getPosition
+    }
+  }, [_vm._v("Get Current Position")])], 1), _vm._v(" "), (_vm.showPreloader) ? _c('f7-preloader') : _vm._e(), _vm._v(" "), _c('div', {
+    attrs: {
+      "id": "map_canvas"
+    }
+  })], 1)], 1)], 1)], 1)], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -33283,10 +33327,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	/* harmony default export */ __webpack_exports__["default"] = ({
 	
             beforeMount(){
-
-				console.log("crreater")
             if (!this.$store.state.isLogged) {
-				  //this.$router.push('/login')
 				 this.$f7.mainView.router.load({url: "/login"})
 				
 				}
@@ -33295,10 +33336,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.$f7.mainView.router.load({url: "/autoInfo"})
 			}catch(erro){
             console.log(erro);
-			}
-				 
-				  return;
-				 
+			}	 
 			}
 			else if(!this.$store.state.autoInfoComplete) {
 				this.$f7.mainView.router.load({url: "/autoInfo"})
