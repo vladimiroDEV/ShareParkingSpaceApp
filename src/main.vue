@@ -23,13 +23,14 @@
 									 <f7-button  href="/register/">Registrati</f7-button>
 
 									  <f7-button  @click="getPosition">Get Current Position</f7-button>
+									   <f7-button  @click="showMaps">Get Show Mapps</f7-button>
 									
 						</f7-block>
 						
 					
 				       <f7-preloader v-if="showPreloader"></f7-preloader>
 
-					   <div id="map_canvas"></div>
+					   <div id="map_canvas" style="height:400px; width:400px" ></div>
 					</f7-page>
 				</f7-pages>
 			</f7-view>
@@ -42,42 +43,10 @@
 	export default {
 
 		data(){return{
-               showPreloader:false
+               showPreloader:false,
+			   map:plugin.google.maps.Map
 		}},
 
-		created() {
-			
-			var map;
-			var div = document.getElementById("map_canvas");
-			 map = plugin.google.maps.Map.getMap(div);
-
-
-
-
-
-	// 		  document.addEventListener("deviceready", onDeviceReady, false);
-    // 		function onDeviceReady() {
-    //    			var onSuccess = function(position) {
-    //     alert('Latitude: '          + position.coords.latitude          + '\n' +
-    //           'Longitude: '         + position.coords.longitude         + '\n' +
-    //           'Altitude: '          + position.coords.altitude          + '\n' +
-    //           'Accuracy: '          + position.coords.accuracy          + '\n' +
-    //           'Altitude Accuracy: ' + position.coords.altitudeAccuracy  + '\n' +
-    //           'Heading: '           + position.coords.heading           + '\n' +
-    //           'Speed: '             + position.coords.speed             + '\n' +
-    //           'Timestamp: '         + position.timestamp                + '\n');
-    // };
-
-    // onError Callback receives a PositionError object
-    //
-    // function onError(error) {
-    //     alert('code: '    + error.code    + '\n' +
-    //           'message: ' + error.message + '\n');
-    // }
-
-  //  navigator.geolocation.getCurrentPosition(onSuccess, onError);
-    //}
-		},
 		methods:{
 			
 			goRegister(){
@@ -107,11 +76,22 @@
 					  alert('code: '    + error.code    + '\n' +
                    'message: ' + error.message + '\n');
 				});
-			}
+			},
+			showMaps(){
+					
+			var map;
+			var div = document.getElementById("map_canvas");
+			 map = plugin.google.maps.Map.getMap(div,
+			 {
+  camera: {
+    target: {lat: -34.397, lng: 150.644},
+    zoom: 19
+  }
+});
+			 
 
-			
-		
 		}
+	}
 	}
 </script>
 

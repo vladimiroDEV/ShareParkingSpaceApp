@@ -31715,20 +31715,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 	/* harmony default export */ __webpack_exports__["default"] = ({
 
 		data(){return{
-               showPreloader:false
+               showPreloader:false,
+			   map:plugin.google.maps.Map
 		}},
 
 		created() {
-			debugger;
-			var map;
-			var div = document.getElementById("map_canvas");
-			 map = plugin.google.maps.Map.getMap(div);
-
+			
+		
 
 
 
@@ -31785,11 +31784,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					  alert('code: '    + error.code    + '\n' +
                    'message: ' + error.message + '\n');
 				});
-			}
+			},
+			showMaps(){
+					
+			var map;
+			var div = document.getElementById("map_canvas");
+			 map = plugin.google.maps.Map.getMap(div,
+			 {
+  camera: {
+    target: {lat: -34.397, lng: 150.644},
+    zoom: 19
+  }
+});
+			 
 
-			
-		
 		}
+	}
 	});
 
 
@@ -31831,7 +31841,15 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     on: {
       "click": _vm.getPosition
     }
-  }, [_vm._v("Get Current Position")])], 1), _vm._v(" "), (_vm.showPreloader) ? _c('f7-preloader') : _vm._e(), _vm._v(" "), _c('div', {
+  }, [_vm._v("Get Current Position")]), _vm._v(" "), _c('f7-button', {
+    on: {
+      "click": _vm.showMaps
+    }
+  }, [_vm._v("Get Show Mapps")])], 1), _vm._v(" "), (_vm.showPreloader) ? _c('f7-preloader') : _vm._e(), _vm._v(" "), _c('div', {
+    staticStyle: {
+      "height": "400px",
+      "width": "400px"
+    },
     attrs: {
       "id": "map_canvas"
     }
