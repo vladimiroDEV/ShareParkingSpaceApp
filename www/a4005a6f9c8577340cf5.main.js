@@ -485,15 +485,16 @@ module.exports = function normalizeComponent (
 /*!*************************************************!*\
   !*** ./src/assets/vue/services/userServices.js ***!
   \*************************************************/
-/*! exports provided: GetCurrentUserDataServ, updateUser, updateUserAuto, refillCredit */
-/*! exports used: GetCurrentUserDataServ, refillCredit, updateUser, updateUserAuto */
+/*! exports provided: GetCurrentUserDataServ, updateUser, updateUserAuto, refillCredit, shareParking */
+/*! exports used: GetCurrentUserDataServ, refillCredit, shareParking, updateUser, updateUserAuto */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GetCurrentUserDataServ; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return updateUser; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return updateUserAuto; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return updateUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return updateUserAuto; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return refillCredit; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return shareParking; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios__ = __webpack_require__(/*! axios */ 5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_axios__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_config__ = __webpack_require__(/*! ../utils/config */ 18);
@@ -507,6 +508,7 @@ __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.headers.common['Authoriza
  
 
 function GetCurrentUserDataServ(){
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.defaults.headers.common['Authorization'] ='Bearer ' + localStorage.getItem('token');
     const url = `${__WEBPACK_IMPORTED_MODULE_1__utils_config__["a" /* BASE_URL */]}/ManageAccount/GetUserInfo`;
     return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.get(url);
 }
@@ -539,6 +541,16 @@ function refillCredit(newCredit){
       "Action":1 /// 1= ricarica 
     });
 }
+
+function shareParking(lat, long, locality) {
+    const url = `${__WEBPACK_IMPORTED_MODULE_1__utils_config__["a" /* BASE_URL */]}/ParkingSpaces/AddParkingSpace`; 
+    return __WEBPACK_IMPORTED_MODULE_0_axios___default.a.post(url,{
+      "Lat":lat, 
+      "Long":long,
+      "Location":locality
+    });
+}
+
 
 
 
@@ -12532,9 +12544,10 @@ module.exports = Cancel;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-const  BASE_URL = 'https://localhost:44334/api';
+//export const  BASE_URL = 'https://localhost:44334/api';
+const BASE_URL = 'http://sahreparkingspaceapi.azurewebsites.net/api'
 /* harmony export (immutable) */ __webpack_exports__["a"] = BASE_URL;
-
+  // prod
 
 /***/ }),
 /* 19 */
@@ -31725,6 +31738,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                showPreloader:false,
 			 
 		}},
+		created(){
+			if(localStorage.getItem("token")){
+				this.$f7.mainView.router.load({url: "/home"})
+			}
+
+		},
 
 		methods:{
 			showLocation(){
@@ -33127,8 +33146,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods:{
 		login(){
-			//loginServices(this.username, this.password)
-			Object(__WEBPACK_IMPORTED_MODULE_0__services_auth__["a" /* loginServices */])("test2@mail.it", "password")
+			Object(__WEBPACK_IMPORTED_MODULE_0__services_auth__["a" /* loginServices */])(this.username, this.password)
+			//loginServices("test2@mail.it", "password")
 			.then(response =>{
 				 console.log("response token");
 				 console.log("token " + response.data)
@@ -33291,6 +33310,9 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__services_userServices__ = __webpack_require__(/*! ../services/userServices */ 2);
+//
+//
 //
 //
 //
@@ -33325,6 +33347,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	
 	/* harmony default export */ __webpack_exports__["default"] = ({
+		
+
+		data() {return{
+         currentPosition:{
+					 lat:'',
+					 long:'',
+					 location:''
+				 }
+		}},
 	
             beforeMount(){
             if (!this.$store.state.isLogged) {
@@ -33342,6 +33373,44 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				this.$f7.mainView.router.load({url: "/autoInfo"})
 			}
 							
+			},
+			methods:{
+				shareParking() {
+		 //		this.showPreloader = true;
+				
+				 navigator.geolocation.getCurrentPosition(
+					 	(position)=>{
+							 this.showPreloader = false;
+							 this.currentPosition.lat = position.coords.latitude;
+							 this.currentPosition.long = position.coords.longitude;
+
+							 alert("getPositionok");
+
+							 // location 
+							 	nativegeocoder.reverseGeocode(
+					result =>{
+					//	alert("The address is: \n\n" + JSON.stringify(result)+" \n\n Locality:   "+result.locality);
+					this.currentPosition.location = result.locality;
+					alert("getlocality" + result.locality);
+					// api 
+					Object(__WEBPACK_IMPORTED_MODULE_0__services_userServices__["c" /* shareParking */])(this.currentPosition.lat, this.currentPosition.long, this.currentPosition.location)
+					then(res=>{ alert("la segnalazione è andata a buon fine");
+
+					}).catch(err=>{alert("Error:  "+ err)})
+					
+
+						}, 
+					err=>{alert(JSON.stringify(err));}, 
+					 this.currentPosition.lat, this.currentPosition.long);	
+
+						 },
+				(error)=>{
+					this.showPreloader = false;
+					  alert('code: '    + error.code    + '\n' +
+                   'message: ' + error.message + '\n');
+				});
+			},
+				
 			}
 			
         
@@ -33379,7 +33448,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "/autoInfo/"
     }
-  }, [_vm._v("Auto")])], 1)]), _vm._v(" "), _c('f7-panel', {
+  }, [_vm._v("Auto")])], 1), _vm._v(" "), _c('button', {
+    on: {
+      "click": _vm.shareParking
+    }
+  }, [_vm._v("Cedi Posto ")])]), _vm._v(" "), _c('f7-panel', {
     attrs: {
       "right": "",
       "cover": ""
@@ -33535,7 +33608,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	},
 	methods:{
 		save() {
-		  Object(__WEBPACK_IMPORTED_MODULE_0__services_userServices__["c" /* updateUser */])(this.user.displayName, this.user.name, this.user.surname)
+		  Object(__WEBPACK_IMPORTED_MODULE_0__services_userServices__["d" /* updateUser */])(this.user.displayName, this.user.name, this.user.surname)
 		  .then(res=>{
 			  console.log(res.data)
 				this.$store.commit('UPDATE_USER_PROFILE',res.data);
@@ -33970,7 +34043,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		}},
 		methods:{
 		save() {
-		  Object(__WEBPACK_IMPORTED_MODULE_0__services_userServices__["d" /* updateUserAuto */])(this.auto.plate, this.auto.brend, this.auto.model,this.auto.color)
+		  Object(__WEBPACK_IMPORTED_MODULE_0__services_userServices__["e" /* updateUserAuto */])(this.auto.plate, this.auto.brend, this.auto.model,this.auto.color)
 		  .then(res=>{
 			  console.log(res.data)
 				this.$store.commit('UPDATE_USER_AUTO',res.data.auto);

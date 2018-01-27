@@ -47,6 +47,12 @@
                showPreloader:false,
 			 
 		}},
+		created(){
+			if(localStorage.getItem("token")){
+				this.$f7.mainView.router.load({url: "/home"})
+			}
+
+		},
 
 		methods:{
 			showLocation(){
