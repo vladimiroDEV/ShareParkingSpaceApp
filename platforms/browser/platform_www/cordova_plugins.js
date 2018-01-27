@@ -169,6 +169,14 @@ module.exports = [
         "clobbers": [
             "plugin.google.maps"
         ]
+    },
+    {
+        "file": "plugins/cordova-plugin-nativegeocoder/www/NativeGeocoder.js",
+        "id": "cordova-plugin-nativegeocoder.NativeGeocoder",
+        "pluginId": "cordova-plugin-nativegeocoder",
+        "clobbers": [
+            "nativegeocoder"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -176,7 +184,8 @@ module.exports.metadata =
 {
     "cordova-plugin-whitelist": "1.3.3",
     "cordova-plugin-googlemaps": "2.1.1",
-    "cordova-plugin-geolocation": "4.0.1"
+    "cordova-plugin-geolocation": "4.0.1",
+    "cordova-plugin-nativegeocoder": "2.0.5"
 }
 // BOTTOM OF METADATA
 });

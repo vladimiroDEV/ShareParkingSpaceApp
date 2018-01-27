@@ -45,6 +45,9 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
+    <feature name="NativeGeocoder">
+        <param name="android-package" value="cordova.plugin.nativegeocoder.NativeGeocoder" />
+    </feature>
     <hook src="hooks/hookers.js" type="before_prepare" />
     <hook src="hooks/beforedep.js" type="before_deploy" />
     <name>Cordova - Framework7 - Vue - Webpack Template</name>

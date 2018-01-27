@@ -24,6 +24,7 @@
 
 									  <f7-button  @click="getPosition">Get Current Position</f7-button>
 									   <f7-button  @click="showMaps">Get Show Mapps</f7-button>
+									   <f7-button  @click="showLocation">Show Location</f7-button>
 									
 						</f7-block>
 						
@@ -44,10 +45,17 @@
 
 		data(){return{
                showPreloader:false,
-			   map:plugin.google.maps.Map
+			 
 		}},
 
 		methods:{
+			showLocation(){
+				debugger;
+				nativegeocoder.reverseGeocode(
+					result =>{alert("The address is: \n\n" + JSON.stringify(result)+" \n\n Locality:   "+result.locality);}, 
+					err=>{alert(JSON.stringify(err));}, 
+					41.8559747, 12.557053);	
+			},
 			
 			goRegister(){
 				this.$f7.mainView.router.load({url: "/register"})

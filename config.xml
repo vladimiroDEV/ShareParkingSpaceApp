@@ -31,6 +31,7 @@
         <variable name="API_KEY_FOR_IOS" value="AIzaSyCkrMpMOJ_A0ooOQkmaKcCveZLvCQAlySk" />
     </plugin>
     <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-nativegeocoder" spec="^2.0.5" />
     <engine name="browser" spec="^5.0.3" />
     <engine name="android" spec="^7.0.0" />
 </widget>
