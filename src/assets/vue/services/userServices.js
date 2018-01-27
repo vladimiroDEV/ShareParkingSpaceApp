@@ -8,6 +8,7 @@ axios.defaults.headers.common['Authorization'] =AuthStr;
 export {GetCurrentUserDataServ, updateUser,updateUserAuto, refillCredit} ; 
 
 function GetCurrentUserDataServ(){
+    axios.defaults.headers.common['Authorization'] ='Bearer ' + localStorage.getItem('token');
     const url = `${BASE_URL}/ManageAccount/GetUserInfo`;
     return axios.get(url);
 }
