@@ -31,7 +31,7 @@
 					
 				       <f7-preloader v-if="showPreloader"></f7-preloader>
 
-					   <div id="map_canvas" style="height:400px; width:400px" ></div>
+					   <div id="map_canvas_demo" style="height:400px; width:400px" ></div>
 					</f7-page>
 				</f7-pages>
 			</f7-view>
@@ -49,7 +49,7 @@
 		}},
 		created(){
 			if(localStorage.getItem("token")){
-				this.$f7.mainView.router.load({url: "/home"})
+				//this.$f7.mainView.router.load({url: "/home"})
 			}
 
 		},
@@ -94,7 +94,7 @@
 			showMaps(){
 					
 			var map;
-			var div = document.getElementById("map_canvas");
+			var div = document.getElementById("map_canvas_demo");
 			 map = plugin.google.maps.Map.getMap(div,
 			 {
   camera: {

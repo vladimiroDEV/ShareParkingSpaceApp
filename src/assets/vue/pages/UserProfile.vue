@@ -35,8 +35,6 @@
         	</f7-block>
 			</div>
 	
-			
-				
 		</f7-page>
 	</f7-pages>
 

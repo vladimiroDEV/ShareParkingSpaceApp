@@ -42,6 +42,11 @@ export default [
     component: require('./assets/vue/pages/autoInfo.vue'),
   },
 
+  {path:'/findParkingMap/',
+   name:"findParkingMap",
+   component:require('./assets/vue/pages/findParkingMap.vue')
+},
+
   {
     path: '/error/',
      name:"error",

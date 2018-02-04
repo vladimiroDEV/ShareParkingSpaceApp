@@ -1,4 +1,5 @@
 <template>
+<f7-pages>
 	<f7-page>
 		 <f7-navbar>
               <f7-nav-center sliding>Home</f7-nav-center>
@@ -11,7 +12,8 @@
 			<p> Per poter utilizare il servizio  completa il tuo profilo <f7-link href="/userProfile/">Profilo</f7-link></p>
 			<p> Per poter utilizare il servizio inserisci i dati relativi alla tua auto <f7-link href="/autoInfo/">Auto</f7-link></p>
 
-			<button @click="shareParking">Cedi Posto </button>
+			<f7-button @click="shareParking">Cedi Posto </f7-button>
+			<f7-button href="/findParkingMap/">Cerca Posto </f7-button>
 		</f7-block>
 
 	 <f7-panel right cover>
@@ -29,6 +31,7 @@
     </f7-panel>
 	
 	</f7-page>
+	</f7-pages>
 </template>
 
 <script>
@@ -62,6 +65,9 @@
 							
 			},
 			methods:{
+				findParking(){
+				this.$f7.mainView.router.load({url: "/findParkingMap"})
+				},
 				shareParking() {
 		 //		this.showPreloader = true;
 				
@@ -99,7 +105,5 @@
 			},
 				
 			}
-			
-        
     }
 </script>

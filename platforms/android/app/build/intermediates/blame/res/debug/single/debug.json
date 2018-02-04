@@ -1,11 +1,11 @@
 [
     {
-        "merged": "C:\\Users\\vladimiro\\Documents\\Projects\\ShareParkingSpaceApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_focused.xml.flat",
-        "source": "C:\\Users\\vladimiro\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\40948d6c151c3566142c2dba54d6c146\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
-    },
-    {
         "merged": "C:\\Users\\vladimiro\\Documents\\Projects\\ShareParkingSpaceApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable-mdpi-v4_common_google_signin_btn_text_dark_normal_background.9.png.flat",
         "source": "C:\\Users\\vladimiro\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\40948d6c151c3566142c2dba54d6c146\\res\\drawable-mdpi-v4\\common_google_signin_btn_text_dark_normal_background.9.png"
+    },
+    {
+        "merged": "C:\\Users\\vladimiro\\Documents\\Projects\\ShareParkingSpaceApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\drawable_common_google_signin_btn_text_light_focused.xml.flat",
+        "source": "C:\\Users\\vladimiro\\.gradle\\caches\\transforms-1\\files-1.1\\play-services-base-11.8.0.aar\\40948d6c151c3566142c2dba54d6c146\\res\\drawable\\common_google_signin_btn_text_light_focused.xml"
     },
     {
         "merged": "C:\\Users\\vladimiro\\Documents\\Projects\\ShareParkingSpaceApp\\platforms\\android\\app\\build\\intermediates\\res\\merged\\debug\\mipmap-xxxhdpi_icon.png.flat",

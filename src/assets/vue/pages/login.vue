@@ -39,8 +39,8 @@ export default {
 
 	methods:{
 		login(){
-			loginServices(this.username, this.password)
-			//loginServices("test2@mail.it", "password")
+			//loginServices(this.username, this.password)
+			loginServices("test@mail.it", "password")
 			.then(response =>{
 				 console.log("response token");
 				 console.log("token " + response.data)
