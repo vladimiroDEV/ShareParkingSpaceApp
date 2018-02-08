@@ -33352,6 +33352,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 	
 	/* harmony default export */ __webpack_exports__["default"] = ({
@@ -33384,7 +33388,17 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			},
 			methods:{
 				findParking(){
-				this.$f7.mainView.router.load({url: "/findParkingMap"})
+			  //	this.$f7.mainView.router.load({url: "/findParkingMap"})
+
+				var div = document.getElementById("map_canvas");
+					var map;
+			 map = plugin.google.maps.Map.getMap(div,
+			 {
+				camera: {
+					target: {lat: 41.90278349999999, lng: 12.496365500000024},
+					zoom: 19
+				}
+				});
 				},
 				shareParking() {
 		 //		this.showPreloader = true;
@@ -34267,13 +34281,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 	methods: {
 //  onF7Init() {  
-      // loadMap(){
-	  onF7Ready(f7) {
+      loadMap(){
+		  var $$ = Dom7;
+	//    onF7Ready(f7) {
+		// onF7Ready() {
+			//document.addEventListener("deviceready", function() {
+				this.$f7.onPageAfterAnimation('maps',function(page){
+					// $$(document).on('deviceready', function() {
+
   
           var div = document.getElementById("map_canvas");
-
-  // Initialize the map view
-       //  map = plugin.google.maps.Map.getMap(div);
         		
 			var map;
 			//var div = document.getElementById("map_canvas");
@@ -34284,6 +34301,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 					zoom: 19
 				}
 				});
+			});
 }
 	 }
 });
@@ -34301,7 +34319,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('f7-page', [_c('f7-navbar', {
+  return _c('f7-page', {
+    attrs: {
+      "page": "",
+      "data-page": "maps"
+    },
+    on: {
+      "page:init": _vm.loadMap
+    }
+  }, [_c('f7-navbar', {
     attrs: {
       "title": "Mappa",
       "back-link": "Back"

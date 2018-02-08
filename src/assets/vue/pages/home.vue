@@ -14,6 +14,10 @@
 
 			<f7-button @click="shareParking">Cedi Posto </f7-button>
 			<f7-button href="/findParkingMap/">Cerca Posto </f7-button>
+
+			<!-- <f7-button @click="findParking">Cerca Posto </f7-button> -->
+
+			<!-- <div id="map_canvas" style="height:400px; width:400px;" ></div>	 -->
 		</f7-block>
 
 	 <f7-panel right cover>
@@ -66,7 +70,17 @@
 			},
 			methods:{
 				findParking(){
-				this.$f7.mainView.router.load({url: "/findParkingMap"})
+			  //	this.$f7.mainView.router.load({url: "/findParkingMap"})
+
+				var div = document.getElementById("map_canvas");
+					var map;
+			 map = plugin.google.maps.Map.getMap(div,
+			 {
+				camera: {
+					target: {lat: 41.90278349999999, lng: 12.496365500000024},
+					zoom: 19
+				}
+				});
 				},
 				shareParking() {
 		 //		this.showPreloader = true;
